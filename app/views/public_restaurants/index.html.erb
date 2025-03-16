@@ -5,3 +5,11 @@
     <li><%= restaurant.name %> - <%= restaurant.cuisine %></li>
   <% end %>
 </ul>
+
+<p><%= link_to "Admin Area", admin_restaurants_path %></p>
+<% if user_signed_in? %>
+  <p><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></p>
+  <% else %>
+  <p><%= link_to "Sign In", new_user_session_path %></p>
+  <p><%= link_to "Sign Up", new_user_registration_path %></p>
+<% end %>

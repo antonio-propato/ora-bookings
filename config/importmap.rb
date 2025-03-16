@@ -1,4 +1,6 @@
 # Pin npm packages by running ./bin/importmap
+# config/importmap.rb
+pin "@rails/ujs", to: "https://ga.jspm.io/npm:@rails/ujs@7.1.3-4/app/assets/javascripts/rails-ujs.esm.js"
 
 pin "application"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
