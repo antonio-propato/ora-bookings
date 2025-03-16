@@ -1,8 +1,8 @@
 class Admin::RestaurantsController < ApplicationController
-  layout 'admin' # Add this line!
+  layout "admin" # Add this line!
   before_action :authenticate_user!
   before_action :authorize_admin!
-  before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_restaurant, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @restaurants = Restaurant.all
@@ -18,7 +18,7 @@ class Admin::RestaurantsController < ApplicationController
   def create
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
-      redirect_to admin_restaurant_path(@restaurant), notice: 'Restaurant was successfully created.'
+      redirect_to admin_restaurant_path(@restaurant), notice: "Restaurant was successfully created."
     else
       render :new
     end
@@ -29,7 +29,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def update
     if @restaurant.update(restaurant_params)
-      redirect_to admin_restaurant_path(@restaurant), notice: 'Restaurant was successfully updated.'
+      redirect_to admin_restaurant_path(@restaurant), notice: "Restaurant was successfully updated."
     else
       render :edit
     end
@@ -37,8 +37,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def destroy
     @restaurant.destroy
-    redirect_to admin_restaurants_path, notice: 'Restaurant was successfully destroyed.'
-
+    redirect_to admin_restaurants_path, notice: "Restaurant was successfully destroyed."
   end
 
 
@@ -54,7 +53,7 @@ class Admin::RestaurantsController < ApplicationController
 
   def authorize_admin!
     unless current_user.admin?
-      redirect_to root_path, alert: 'You are not authorized to access this page.'
+      redirect_to root_path, alert: "You are not authorized to access this page."
     end
   end
 end

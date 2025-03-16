@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :restaurants
   end
 
-  resources :restaurants, controller: 'public_restaurants', only: [:index, :show] # Added show route
+  resources :restaurants, controller: "public_restaurants", only: [ :index, :show ] # Added show route
 
-  root to: 'public_restaurants#index'
+  root to: "public_restaurants#index"
 end
