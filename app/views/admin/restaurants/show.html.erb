@@ -4,10 +4,12 @@
 <p><strong>Cuisine:</strong> <%= @restaurant.cuisine %></p>
 <p><strong>Description:</strong> <%= @restaurant.description %></p>
 
+
+
+<!-- Edit button -->
+<%= link_to 'Edit', edit_admin_restaurant_path(@restaurant), class: 'btn btn-primary' %> |
+<%= link_to 'Back to list', admin_restaurants_path %> |
 <!-- Delete button form -->
 <%= form_with(model: [:admin, @restaurant], url: admin_restaurant_path(@restaurant), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
   <%= form.submit 'Delete', data: { turbo: false } %>
 <% end %>
-
-<%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
-<%= link_to 'Back to list', admin_restaurants_path %>
