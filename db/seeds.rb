@@ -7,3 +7,16 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.destroy_all
+admin = User.create!(
+  email:    'admin@example.com',
+  password: 'password', # Change this to a secure password in a real app!
+  admin:    true
+)
+puts "Admin user created with email: #{admin.email}"
+
+Restaurant.destroy_all
+Restaurant.create(name: "Delicious Delights", location: "123 Main St", cuisine: "Italian", description: "A fantastic place to eat!")
+Restaurant.create(name: "Coffee House", location: "345 Side St", cuisine: "American", description: "Coffee and nice meals!")
+puts "DB Seeding Complete"

@@ -1,0 +1,30 @@
+<h1>Admin - Restaurants</h1>
+
+<%= link_to 'New Restaurant', new_admin_restaurant_path %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Cuisine</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restaurants.each do |restaurant| %>
+      <tr>
+        <td><%= restaurant.name %></td>
+        <td><%= restaurant.location %></td>
+        <td><%= restaurant.cuisine %></td>
+        <td>
+          <%= link_to 'Show', admin_restaurant_path(restaurant) %>
+          <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
+          <%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Site', root_path %>
