@@ -1,3 +1,11 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
-import "@hotwired/turbo-rails"
-import "controllers"
+// app/javascript/application.js
+
+import Rails from "@rails/ujs";
+import "@hotwired/turbo-rails";
+import "controllers";
+
+// Initialize Rails UJS
+Rails.start();
+
+// For debugging, you can check if Rails UJS is loaded
+window.Rails = Rails;

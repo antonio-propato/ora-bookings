@@ -1,7 +1,13 @@
 <h1><%= @restaurant.name %></h1>
-<p>Location: <%= @restaurant.location %></p>
-<p>Cuisine: <%= @restaurant.cuisine %></p>
-<p>Description: <%= @restaurant.description %></p>
+
+<p><strong>Location:</strong> <%= @restaurant.location %></p>
+<p><strong>Cuisine:</strong> <%= @restaurant.cuisine %></p>
+<p><strong>Description:</strong> <%= @restaurant.description %></p>
+
+<!-- Delete button form -->
+<%= form_with(model: [:admin, @restaurant], url: admin_restaurant_path(@restaurant), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
+  <%= form.submit 'Delete', data: { turbo: false } %>
+<% end %>
 
 <%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', admin_restaurants_path %>
+<%= link_to 'Back to list', admin_restaurants_path %>

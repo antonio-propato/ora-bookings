@@ -38,7 +38,9 @@ class Admin::RestaurantsController < ApplicationController
   def destroy
     @restaurant.destroy
     redirect_to admin_restaurants_path, notice: 'Restaurant was successfully destroyed.'
+
   end
+
 
   private
 
