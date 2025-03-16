@@ -48,7 +48,7 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def restaurant_params
-    params.require(:restaurant).permit(:name, :location, :cuisine, :description)
+    params.require(:restaurant).permit(:name, :location, :cuisine, :description, pictures: [])
   end
 
   def authorize_admin!

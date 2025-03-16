@@ -4,6 +4,18 @@
 <p><strong>Cuisine:</strong> <%= @restaurant.cuisine %></p>
 <p><strong>Description:</strong> <%= @restaurant.description %></p>
 
+<% if @restaurant.pictures.attached? %>
+  <div class="pictures-container" style="display: flex; overflow-x: auto; gap: 10px;">
+    <% @restaurant.pictures.each do |picture| %>
+      <div class="picture-box" style="flex-shrink: 0; width: 150px; height: 150px; overflow: hidden; border: 1px solid #ccc; border-radius: 8px;">
+        <%= image_tag picture, class: 'w-100 h-100 object-cover', alt: "Restaurant Image" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No pictures available for this restaurant.</p>
+<% end %>
+
 
 
 <!-- Edit button -->

@@ -1,6 +1,6 @@
 <h1>Admin - Restaurants</h1>
 
-<%= link_to 'New Restaurant', new_admin_restaurant_path %>
+
 
 <table>
   <thead>
@@ -18,12 +18,15 @@
         <td><%= restaurant.location %></td>
         <td><%= restaurant.cuisine %></td>
         <td>
-          <%= link_to 'Edit', admin_restaurant_path(restaurant) %>
+          <%= link_to 'Admin', admin_restaurant_path(restaurant) %>
           <%# <%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+<br>
+<%= link_to 'New Restaurant', new_admin_restaurant_path %>
+<br>
+<br>
 <%= link_to 'Back to Site', root_path %>
