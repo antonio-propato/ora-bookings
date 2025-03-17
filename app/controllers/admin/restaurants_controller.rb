@@ -1,8 +1,8 @@
 class Admin::RestaurantsController < ApplicationController
-  layout "admin" # Add this line!
+  layout "admin"
   before_action :authenticate_user!
   before_action :authorize_admin!
-  before_action :set_restaurant, only: [ :show, :edit, :update, :destroy ]
+  before_action :set_restaurant, only: [ :show, :edit, :update, :destroy, :delete_picture ]
 
   def index
     @restaurants = Restaurant.all
@@ -16,6 +16,8 @@ class Admin::RestaurantsController < ApplicationController
   end
 
   def create
+    logger.debug "Restaurant Params: #{restaurant_params.inspect}"
+
     @restaurant = Restaurant.new(restaurant_params)
     if @restaurant.save
       redirect_to admin_restaurant_path(@restaurant), notice: "Restaurant was successfully created."
@@ -40,6 +42,11 @@ class Admin::RestaurantsController < ApplicationController
     redirect_to admin_restaurants_path, notice: "Restaurant was successfully destroyed."
   end
 
+  def delete_picture
+    picture = @restaurant.pictures.find(params[:picture_id]) # Find the picture by ID
+    picture.purge if picture
+    redirect_to admin_restaurant_path(@restaurant), notice: "Picture was successfully deleted."
+  end
 
   private
 

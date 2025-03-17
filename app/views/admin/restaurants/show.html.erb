@@ -9,6 +9,7 @@
     <% @restaurant.pictures.each do |picture| %>
       <div class="picture-box">
         <%= image_tag picture, class: 'w-100 h-100 object-cover', alt: "Restaurant Image" %>
+        <!-- Delete button for each picture -->
       </div>
     <% end %>
   </div>
@@ -16,13 +17,11 @@
   <p>No pictures available for this restaurant.</p>
 <% end %>
 
-
-
-
 <!-- Edit button -->
 <%= link_to 'Edit', edit_admin_restaurant_path(@restaurant), class: 'btn btn-primary' %> |
 <%= link_to 'Back to list', admin_restaurants_path %> |
-<!-- Delete button form -->
-<%= form_with(model: [:admin, @restaurant], url: admin_restaurant_path(@restaurant), method: :delete, data: { confirm: 'Are you sure?' }) do |form| %>
-  <%= form.submit 'Delete', data: { turbo: false } %>
+
+<!-- Delete restaurant button form -->
+<%= form_with(model: [:admin, @restaurant], url: admin_restaurant_path(@restaurant), method: :delete, data: { confirm: 'Are you sure you want to delete this restaurant?' }) do |form| %>
+  <%= form.submit 'Delete Restaurant', data: { turbo: false } %>
 <% end %>
