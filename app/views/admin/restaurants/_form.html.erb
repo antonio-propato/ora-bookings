@@ -30,9 +30,28 @@
     <%= form.text_area :description %>
   </div>
 
-  <div class="field">
-    <%= form.label :pictures, "Upload new pictures" %>
-    <%= form.file_field :pictures, multiple: true %>
+  <div class="field" id="pictures-container">
+    <%= form.label :pictures, "Upload pictures" %>
+
+    <!-- Existing pictures -->
+    <% if @restaurant.pictures.attached? %>
+      <div id="existing-pictures">
+        <% @restaurant.pictures.each do |picture| %>
+          <div class="existing-picture">
+            <%= image_tag picture, size: "100x100" %>
+            <%= form.check_box :_destroy, { data: { picture_id: picture.id } }, false, true %>
+            <%= label_tag :_destroy, "Remove this picture" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+    <!-- New picture input -->
+    <div class="new-picture-inputs">
+      <div class="picture-input-box">
+        <%= form.file_field :pictures, multiple: true, class: 'picture-input' %>
+      </div>
+    </div>
   </div>
 
   <div class="actions">

@@ -29,13 +29,33 @@ class Admin::RestaurantsController < ApplicationController
   def edit
   end
 
-  def update
+def update
+    # Handle new pictures
+    if params[:restaurant][:pictures].present?
+      params[:restaurant][:pictures].each do |picture|
+        @restaurant.pictures.attach(picture)
+      end
+    end
+
+    # Handle removal of pictures marked for deletion
+    if params[:restaurant][:pictures_to_remove].present?
+      pictures_to_remove = Array(params[:restaurant][:pictures_to_remove])
+
+      pictures_to_remove.each do |picture_id|
+        picture = @restaurant.pictures.find { |p| p.id.to_s == picture_id.to_s }
+        picture.purge if picture
+      end
+    end
+
+    # Update other restaurant attributes
     if @restaurant.update(restaurant_params)
       redirect_to admin_restaurant_path(@restaurant), notice: "Restaurant was successfully updated."
     else
       render :edit
     end
   end
+
+
 
   def destroy
     @restaurant.destroy
